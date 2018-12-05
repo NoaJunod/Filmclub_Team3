@@ -1,0 +1,28 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./resources/m151Template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{addressViewController.addresses}" var="addresses" >
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{addresses.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Vorname</f:facet>
+                    <h:outputText value="#{addresses.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nachname</f:facet>
+                    <h:outputText value="#{addresses.nachname}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nummer</f:facet>
+                    <h:outputText value="#{addresses.number}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

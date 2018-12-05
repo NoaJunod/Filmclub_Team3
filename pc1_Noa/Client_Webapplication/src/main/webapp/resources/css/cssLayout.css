@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24.08.2016, 14:43:14
+    Author     : lp5lluethi
+*/
+
+body{
+    background-color: greenyellow;
+    font-family: "Verdana", sans-serif; 
+}
+#top{
+    font-size: 20pt;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    width: 98%;
+}
+#left{
+    background-color: #17C900;
+    border-radius: 15px;
+    border: 2px solid #73AD21;
+    width: 150px;
+    padding: 10px;
+    margin-right: 10px;
+    height: 400px;
+    float: left;
+    font-weight: bold;
+}
+#content{
+    padding: 10px;
+}
+
+.button{
+    width:100%;
+    margin-top: 20px;
+    padding: 5px;
+}
+a{
+    text-decoration: none;
+}
+.addressTableHeader{
+    padding: 10px;
+    background-color: #17C900;
+}
