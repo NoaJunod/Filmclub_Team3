@@ -5,8 +5,6 @@
  */
 package ch.bbw.jdbc.addressbook;
 
-import ch.bbw.csv.championship.Championship;
-import ch.bbw.csv.championship.ChampionshipDAOCsv;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;

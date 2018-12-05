@@ -12,20 +12,20 @@
     <h:body>
         <div id="top">
             <ui:insert name="top">
-                <h1>MODUL 151 - Laura Lüthi</h1>
+                <h1>Filmclub - Team 3</h1>
             </ui:insert>
         </div>
         <div>
             <div id="left">
-                  <h:panelGrid columns="1">
-                <h:link value="CSV-Formate" outcome="csv"/>
-                <h:link value="JSON-Formate" />
-                <h:link value="Addresse anzeigen" outcome="showAddress"   />
+                <h:panelGrid columns="1">
+                <h:link value="Film suchen" outcome="filmSuchen"/>
+                <h:link value="Filmliste" outcome="filmliste"/>
+                <h:link value="Film hinzufügen" outcome="filmHinzufuegen"   />
             </h:panelGrid>
               
             </div>
             <div id="content" class="left_content">
-                <ui:insert name="content" />F
+                <ui:insert name="content" />
             </div>
         </div>
     </h:body>

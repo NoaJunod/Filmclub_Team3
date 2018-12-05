@@ -5,7 +5,6 @@
  */
 package ch.bbw.jdbc.addressbook;
 
-import ch.bbw.csv.championship.Championship;
 import java.util.List;
 
 /**

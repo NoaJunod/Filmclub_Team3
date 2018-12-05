@@ -5,8 +5,6 @@
  */
 package ch.bbw.jdbc.addressbook;
 
-import ch.bbw.csv.championship.Championship;
-import ch.bbw.csv.championship.ChampionshipService;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
