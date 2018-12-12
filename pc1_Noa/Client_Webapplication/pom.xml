@@ -115,7 +115,16 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the JAX-RS API, we use provided scope as the API is included 
+
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version>
+        </dependency>
+
+
+        <!-- Import the JAX-RS API, we use provided scope as the API is included
         in JBoss WildFly -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>

@@ -9,7 +9,24 @@
             <h3>Geben Sie mindestens 2 Suchkriterien ein!</h3>
             <h:panelGrid columns="2">
                 <h:outputText value="Titel: "/>
-                <h:inputText value="Hi"/>
+                <h:inputText value="#{filmsucheViewController.title}"/>
+                <h:outputText value="Format: "/>
+                <h:selectOneMenu value="#{filmsucheViewController.format}">
+                    <f:selectItem itemValue="-" itemLabel="Wählen Sie ein Format aus" />
+                    <f:selectItem itemValue="35mm" itemLabel="35mm" />
+                    <f:selectItem itemValue="16mm" itemLabel="16mm" />
+                    <f:selectItem itemValue="35mm + 16" itemLabel="35mm + 16" />
+                </h:selectOneMenu>
+                <h:outputText value="Director: "/>
+                <h:inputText value="#{filmsucheViewController.director}"/>
+                <h:outputText value="Year of Production: "/>
+                <h:inputText value="#{filmsucheViewController.year}"/>
+                <h:outputText value="Duration: "/>
+                <h:inputText value="#{filmsucheViewController.duration}"/>
+                <h:outputText value="Distributor: "/>
+                <h:inputText value="#{filmsucheViewController.distributor}"/>
+                <h:outputText value=" "/>
+                <h:commandButton value = "Suchen" action = "#{filmsucheViewController.search}" />
             </h:panelGrid>
         </h:form>
     </ui:define>
