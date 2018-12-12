@@ -5,6 +5,7 @@
  */
 package ch.bbw.model;
 
+import ch.bbw.model.noa.IMDBReader;
 import java.util.ArrayList;
 
 /**
@@ -14,13 +15,33 @@ import java.util.ArrayList;
 public class Main {
     
     public static void main(String[] args) {
+        /*
         Film f1 = new Film(1, 2000, 200, "The battle of PewDiePie vs T-Series", "mp4", "YouTube.com", "THE INTERNET");
         Film f2 = new Film(2, 20010, 200, "The end", "mp4", "heyyy.com", "THE DISTRIBUTOR");
+        Film f3 = new Film(1, 2000, 200, "The battle of PewDiePie vs T-Series", "mp4", "YouTube.com", "THE INTERNET333333333");
+        Film f4 = new Film(2, 20010, 200, "The end", "mp4", "heyyy.com", "THE DISTRIBUTOR4444444444");
         ArrayList<Film> filmList = new ArrayList<>();
         filmList.add(f1);
         filmList.add(f2);
-        filmList.add(f1);
+        filmList.add(f3);
+        filmList.add(f4);
         new FilmListWriter().writeFilmList(filmList);
+        System.out.println("done!");
+                */
+        
+        IMDBReader ir = new IMDBReader();
+        String movie = "Lord of the Flies";
+        System.out.println("-----------------------"+movie+"-----------------------");
+        System.out.println(ir.getLinkOfTitle(movie));
+        if(ir.movieExists(movie)){
+            System.out.println("movie exists");    
+            System.out.println("Director: " + ir.getDirectorOfTitle(movie));
+            System.out.println("Duration: " + ir.getDurationOfTitle(movie)+ " min");
+            System.out.println("Year: " + ir.getYearOfTitle(movie));
+        }else{
+            System.out.println("no");
+        }
+        
         System.out.println("done!");
     }
    
