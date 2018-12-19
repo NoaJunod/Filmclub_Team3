@@ -79,37 +79,37 @@ public class FilmsucheViewController {
             searches.add(title);
             counter++;
         } else {
-            searches.add(null);
+            searches.add("");
         }
         if(!format.equals("")){
             searches.add(format);
             counter++;
         } else {
-            searches.add(null);
+            searches.add("");
         }
         if(duration > 0){
             searches.add(duration + "");
             counter++;
         } else {
-            searches.add(null);
+            searches.add("");
         }
         if(!director.equals("")){
             searches.add(director);
             counter++;
         } else {
-            searches.add(null);
+            searches.add("");
         }
         if(!distributor.equals("")){
             searches.add(distributor);
             counter++;
         } else {
-            searches.add(null);
+            searches.add("");
         }
         if(year > 0){
             searches.add(year + "");
             counter++;
         } else {
-            searches.add(null);
+            searches.add("");
         }
         if(counter >= 2){
             return true;
