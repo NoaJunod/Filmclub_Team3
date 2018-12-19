@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/filmclub_project?serverTimezone=UTC&amp;zeroDateTimeBehavior=convertToNull</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MariaDBDialect</property>
+        <property name="connection.username">root</property>
+        <mapping class="ch.bbw.filmclub.team3.pc2.database.BoardMember"/>
+        <mapping class="ch.bbw.filmclub.team3.pc2.database.Film"/>
+        <mapping class="ch.bbw.filmclub.team3.pc2.database.Member"/>
+        <mapping class="ch.bbw.filmclub.team3.pc2.database.Presentation"/>
+        <mapping class="ch.bbw.filmclub.team3.pc2.database.Room"/>
+        <mapping class="ch.bbw.filmclub.team3.pc2.database.Visit"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
