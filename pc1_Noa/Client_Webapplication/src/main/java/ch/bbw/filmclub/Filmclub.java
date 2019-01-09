@@ -6,8 +6,9 @@ package ch.bbw.filmclub;
  */
 
 
+import ch.bbw.film.Film;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *

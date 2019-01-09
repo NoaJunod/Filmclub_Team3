@@ -1,4 +1,4 @@
-package ch.bbw.filmclub;
+package ch.bbw.film;
 
 public class Film {
 
