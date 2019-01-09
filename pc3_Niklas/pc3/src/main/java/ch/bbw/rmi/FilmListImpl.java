@@ -7,6 +7,7 @@ package ch.bbw.rmi;
 
 
 import ch.bbw.model.Film;
+import ch.bbw.model.FilmListWriter;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -15,14 +16,19 @@ import java.util.ArrayList;
  *
  * @author 5im16nivanderheide
  */
-public class FilmListImpl extends UnicastRemoteObject implements FilmList {
-        
+public class FilmListImpl extends UnicastRemoteObject implements FilmList {      
 
     public FilmListImpl() throws RemoteException {
     }
 
     @Override
-    public ArrayList<Film> getFilmList() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getResponse() throws RemoteException {
+        return "working";
     }
+
+    @Override
+    public void exportFilmList(ArrayList<Film> filmlist) {
+        new FilmListWriter().writeFilmList(filmlist);
+    }
+
 }

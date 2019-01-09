@@ -14,7 +14,9 @@ import java.util.ArrayList;
  *
  * @author 5im16nivanderheide
  */
-public interface FilmList extends Remote
-{
-    public ArrayList<Film> getFilmList() throws RemoteException;
+public interface FilmList extends Remote{
+    
+    public String getResponse() throws RemoteException;
+    
+    public void exportFilmList(ArrayList<Film> filmlist);
 }

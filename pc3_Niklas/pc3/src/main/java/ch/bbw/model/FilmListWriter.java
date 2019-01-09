@@ -23,7 +23,7 @@ import org.jdom2.output.XMLOutputter;
 public class FilmListWriter {
 
     public FilmListWriter() {
-
+        
     }
 
     public void writeFilmList(ArrayList<Film> filmList) {
