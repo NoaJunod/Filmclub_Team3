@@ -6,24 +6,30 @@ body {
 }
 
 h1 {
-    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     border-bottom: 1px solid #AFAFAF; 
     font-size:  40px;
     font-weight: bold;
     margin: 0px;
     padding: 0px;
-    color: #c2dfef;
+    color: #FFFFFF;
 }
 
 a:link, a:visited {
+  background-color: white;
+    padding: 14px 25px;
+    text-align: center;
+    display: inline-block;
+    border: 2px solid black;
   color: #045491;
   font-weight : bold;
   text-decoration: none;
+    width: 60%;
 }
 
 a:link:hover, a:visited:hover  {
   color: #045491;
   font-weight : bold;
-  text-decoration : underline;
+  text-decoration : none;
+    background-color: #AFAFAF;
 }
 
