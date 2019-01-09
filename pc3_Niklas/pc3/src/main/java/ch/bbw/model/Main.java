@@ -29,15 +29,15 @@ public class Main {
         System.out.println("done!");
                 */
         
-        IMDBReader ir = new IMDBReader();
-        String movie = "Lord of the Flies";
+        String movie = "The Ring Thing (2004)";
+        IMDBReader ir = new IMDBReader(movie);
         System.out.println("-----------------------"+movie+"-----------------------");
-        System.out.println(ir.getLinkOfTitle(movie));
-        if(ir.movieExists(movie)){
+        if(ir.movieExists()){
+            System.out.println(ir.getLinkOfTitle());
             System.out.println("movie exists");    
-            System.out.println("Director: " + ir.getDirectorOfTitle(movie));
-            System.out.println("Duration: " + ir.getDurationOfTitle(movie)+ " min");
-            System.out.println("Year: " + ir.getYearOfTitle(movie));
+            System.out.println("Director: " + ir.getDirectorOfTitle());
+            System.out.println("Duration: " + ir.getDurationOfTitle()+ " min");
+            System.out.println("Year: " + ir.getYearOfTitle());
         }else{
             System.out.println("no");
         }

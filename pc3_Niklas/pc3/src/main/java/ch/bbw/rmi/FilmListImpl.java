@@ -21,7 +21,6 @@ public class FilmListImpl extends UnicastRemoteObject implements FilmList {
     public FilmListImpl() throws RemoteException {
     }
 
-
     @Override
     public ArrayList<Film> getFilmList() throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
