@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<filmList xmlns:xsi="src/main/resources/xml/FilmListSchema.xsd" xsi:noNameSpaceSchemaLocation="FilmListSchema.xml">
-    <filmElement>
-        <id>1</id>
-        <title>I am the one</title>
-        <format>Gay</format>
-        <director>Mo Bamba</director>
-        <year_of_production>6969</year_of_production>
-        <duration>69666420</duration>
-        <distributor>PewNews</distributor>
-    </filmElement>
-</filmList>
+<filmList xmlns:xsi="src/main/resources/xml/FilmListSchema.xsd" xsi:noNameSpaceSchemaLocation="FilmListSchema.xml"><filmElement><id>1</id><title>I am the one</title><format>Gay</format><director>Mo Bamba</director><year_of_production>6969</year_of_production><duration>69666420</duration><distributor>PewNews</distributor></filmElement></filmList>

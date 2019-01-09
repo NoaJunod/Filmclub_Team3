@@ -29,7 +29,7 @@ public class Main {
         System.out.println("done!");
                 */
         
-        String movie = "The Ring Thing (2004)";
+        String movie = "Harry Potter";
         IMDBReader ir = new IMDBReader(movie);
         System.out.println("-----------------------"+movie+"-----------------------");
         if(ir.movieExists()){
