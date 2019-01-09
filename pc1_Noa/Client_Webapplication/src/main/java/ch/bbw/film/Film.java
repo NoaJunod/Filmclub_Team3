@@ -1,6 +1,8 @@
 package ch.bbw.film;
 
-public class Film {
+import java.io.Serializable;
+
+public class Film implements Serializable {
 
     private int id;
     private String title;
