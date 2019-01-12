@@ -5,11 +5,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+
 public class DBSession {
     private static final SessionFactory ourSessionFactory;
 
     static {
         try {
+            System.out.println("CALLED STATIC");
             Configuration configuration = new Configuration();
             configuration.configure();
 

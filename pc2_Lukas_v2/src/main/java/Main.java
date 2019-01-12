@@ -10,6 +10,7 @@ import javax.persistence.metamodel.EntityType;
 import java.util.Map;
 
 public class Main {
+    //todo delete this claas
     private static final SessionFactory ourSessionFactory;
 
     static {
@@ -28,7 +29,7 @@ public class Main {
     }
 
     public static void main(final String[] args) throws Exception {
-        /*final Session session = getSession();
+        final Session session = getSession();
         try {
             System.out.println("querying all the managed entities...");
             final Metamodel metamodel = session.getSessionFactory().getMetamodel();
@@ -42,6 +43,6 @@ public class Main {
             }
         } finally {
             session.close();
-        }*/
+        }
     }
 }
