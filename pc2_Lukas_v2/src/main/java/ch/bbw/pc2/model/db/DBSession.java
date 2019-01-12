@@ -1,3 +1,6 @@
+/*
+ * Author: Lukas Meili
+ */
 package ch.bbw.pc2.model.db;
 
 import org.hibernate.HibernateException;
@@ -6,12 +9,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
+/**
+ * Singleton pattern for database connection.
+ */
 public class DBSession {
     private static final SessionFactory ourSessionFactory;
 
     static {
         try {
-            System.out.println("CALLED STATIC");
             Configuration configuration = new Configuration();
             configuration.configure();
 
@@ -21,6 +26,11 @@ public class DBSession {
         }
     }
 
+    /**
+     * Get an active session to the database.
+     * @return
+     * @throws HibernateException
+     */
     public static Session getSession() throws HibernateException {
         return ourSessionFactory.openSession();
     }

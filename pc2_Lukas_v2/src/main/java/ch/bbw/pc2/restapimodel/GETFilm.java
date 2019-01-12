@@ -1,3 +1,6 @@
+/*
+  Author: Lukas Meili
+ */
 package ch.bbw.pc2.restapimodel;
 
 import ch.bbw.pc2.model.db.DBSession;
@@ -11,7 +14,22 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class handles the get request for {ip}/film/query.
+ */
 public class GETFilm {
+    /**
+     * This method queries through the database to find entries which match the query parameters.
+     * All parameters are optional. (pass null or "" if you do not use them)
+     *
+     * @param title
+     * @param format
+     * @param director
+     * @param yearOfProduction
+     * @param duration
+     * @param distributor
+     * @return
+     */
     public static JSONObject getFilms(String title, String format, String director, int yearOfProduction, int duration, String distributor) {
         JSONObject answer = new JSONObject();
         Session session = null;
