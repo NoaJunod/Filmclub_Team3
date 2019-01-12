@@ -6,6 +6,8 @@
 package ch.bbw.rmi;
 
 import ch.bbw.film.Film;
+
+import java.lang.reflect.UndeclaredThrowableException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -18,5 +20,5 @@ public interface FilmList extends Remote{
     
     public String getResponse() throws RemoteException;
     
-    public void exportFilmList(ArrayList<Film> filmlist);
+    public void exportFilmList(ArrayList<Film> filmlist) ;
 }

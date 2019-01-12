@@ -36,17 +36,17 @@ public class IMDBReader {
         for (Element movie : movies) {
             String href = movie.absUrl("href");
             if (href.contains("/title/tt")) {
-                String text = movie.text().toLowerCase();
-                System.out.println(text);               
-                if (title.contains(text)) {
-                    urlMovie = href;
-                    //System.out.println(urlMovie);   
-                    try {
-                        this.docMovie = Jsoup.connect(urlMovie).get();
-                    } catch (IOException ex) {
-                        Logger.getLogger(IMDBReader.class.getName()).log(Level.SEVERE, null, ex);
+                if (!movie.hasClass("fallback")) {
+                    String text = movie.text().toLowerCase();
+                    if (title.contains(text)) {
+                        urlMovie = href;
+                        try {
+                            this.docMovie = Jsoup.connect(urlMovie).get();
+                        } catch (IOException ex) {
+                            Logger.getLogger(IMDBReader.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        return true;
                     }
-                    return true;
                 }
             }
         }
@@ -90,12 +90,9 @@ public class IMDBReader {
         Elements elements = docMovie.select("div");
         for (Element element : elements) {
             if (element.hasClass("subtext")) {
-
                 Elements years = element.select("a");
-
                 for (Element year : years) {
-
-                    if (element.absUrl("href").contains("/title/tt")) {
+                    if (year.absUrl("href").contains("/title/tt")) {
                         String timeString = year.text();
                         String[] timeArray = timeString.split(" ");
                         String yearString = timeArray[2];

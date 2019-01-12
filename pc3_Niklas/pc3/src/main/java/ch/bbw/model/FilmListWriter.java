@@ -5,6 +5,7 @@
  */
 package ch.bbw.model;
 
+import ch.bbw.film.Film;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class FilmListWriter {
                 filmElement.addContent(new Element("title").addContent(f.getTitle() + ""));
                 filmElement.addContent(new Element("format").addContent(f.getFormat() + ""));
                 filmElement.addContent(new Element("director").addContent(f.getDirector() + ""));
-                filmElement.addContent(new Element("year_of_production").addContent(f.getYear_of_production() + ""));
+                filmElement.addContent(new Element("year_of_production").addContent(f.getYearOfProduction()+ ""));
                 filmElement.addContent(new Element("duration").addContent(f.getDuration() + ""));
                 filmElement.addContent(new Element("distributor").addContent(f.getDistributor() + ""));
                 root.addContent(filmElement);
