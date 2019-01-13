@@ -41,6 +41,7 @@ public class RestApi {
                            @QueryParam("yearOfProduction") int yearOfProduction,
                            @QueryParam("duration") int durationInMin,
                            @QueryParam("distributor") String distributor) {
+        System.out.println("GET request /film/query");
         return GETFilm.getFilms(title, format, director, yearOfProduction, durationInMin, distributor).toString();
     }
 
@@ -65,6 +66,7 @@ public class RestApi {
                           @FormParam("yearOfProduction") int yearOfProduction,
                           @FormParam("duration") int durationInMin,
                           @FormParam("distributor") String distributor) {
+        System.out.println("PUT request /film/add");
         return PUTFilm.addFilm(title, format, director, yearOfProduction, durationInMin, distributor).toString();
     }
 
@@ -77,6 +79,7 @@ public class RestApi {
     @Path("/events_by_film_id")
     @Produces(MediaType.APPLICATION_JSON)
     public String getEventByFilmID(@QueryParam("filmID") int filmID){
+        System.out.println("GET request /film/events_by_film_id");
         return GETEventsByFilmID.getEventsByFilmID(filmID).toString();
     }
 }
