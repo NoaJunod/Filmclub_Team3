@@ -30,6 +30,7 @@ public class PUTFilm {
         JSONObject answer = new JSONObject();
         //check if a value is missing
         if(title == null || format == null || director == null || yearOfProduction == 0 || duration == 0|| distributor  == null){
+            answer = new JSONObject();
             answer.put("ERROR", "Film was not added to database!");
             answer.put("ERRORMSG", "One of the values was not set.");
             return answer;
@@ -53,6 +54,7 @@ public class PUTFilm {
             answer.put("SUCCESS", "The film was successfully added to the database!");
             return answer;
         }catch (Exception e){
+            answer = new JSONObject();
             answer.put("ERROR", "Something has gone wrong");
             answer.put("ERRORMSG", e.getMessage());
             return answer;

@@ -69,6 +69,7 @@ public class GETFilm {
             answer.put("films", filmJsonArray);
             return answer;
         }catch (Exception e){
+            answer = new JSONObject();
             answer.put("ERROR", "Something has gone wrong");
             answer.put("ERRORMSG", e.getMessage());
             return answer;

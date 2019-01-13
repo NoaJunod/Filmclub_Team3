@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import ch.bbw.pc2.model.db.DBSession;
 import ch.bbw.pc2.model.db.Member;
+import ch.bbw.pc2.restapimodel.GETEventsByFilmID;
 import ch.bbw.pc2.restapimodel.GETFilm;
 import ch.bbw.pc2.restapimodel.PUTFilm;
 import org.hibernate.Session;
@@ -65,5 +66,17 @@ public class RestApi {
                           @FormParam("duration") int durationInMin,
                           @FormParam("distributor") String distributor) {
         return PUTFilm.addFilm(title, format, director, yearOfProduction, durationInMin, distributor).toString();
+    }
+
+    /**
+     * Redirects a PUT "/film/events_by_film_id" request to @{@link GETEventsByFilmID}.
+     * @param filmID
+     * @return
+     */
+    @GET
+    @Path("/events_by_film_id")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getEventByFilmID(@QueryParam("filmID") int filmID){
+        return GETEventsByFilmID.getEventsByFilmID(filmID).toString();
     }
 }
