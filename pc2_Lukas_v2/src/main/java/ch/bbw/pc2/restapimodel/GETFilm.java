@@ -21,6 +21,7 @@ public class GETFilm {
     /**
      * This method queries through the database to find entries which match the query parameters.
      * All parameters are optional. (pass null or "" if you do not use them)
+     * If no parameters where given, will show all entries.
      *
      * @param title
      * @param format

@@ -6,6 +6,7 @@ package ch.bbw.pc2.restapimodel;
 import ch.bbw.pc2.model.db.DBSession;
 import ch.bbw.pc2.model.db.Film;
 import ch.bbw.pc2.model.db.Presentation;
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -44,13 +45,13 @@ public class GETEventsByFilmID {
 
 
             //load presentations from db
-            List<Presentation> presentations = session.createQuery("FROM presentation where film_idfs like " + filmID).list();
+            List<Presentation> presentations = session.createQuery("FROM Presentation where film_idfs like " + filmID).list();
 
             //format in json(array)
             JSONArray presentationArray = new JSONArray();
-            for(Presentation p:presentations){
+            for (Presentation p : presentations) {
                 JSONObject tmpJsonObject = new JSONObject();
-                tmpJsonObject.put("date", p.getDate());
+                tmpJsonObject.put("date", p.getDate().toString());
                 tmpJsonObject.put("room", p.getRoomByRoomIdfs().getName());
                 tmpJsonObject.put("time", p.getTime().toString());
 
@@ -59,7 +60,14 @@ public class GETEventsByFilmID {
             answer.put("presentations", presentationArray);
 
             return answer;
+        } catch (ObjectNotFoundException e){
+            e.printStackTrace();
+            answer = new JSONObject();
+            answer.put("ERROR", "No entry was found");
+            answer.put("ERRORMSG", e.getMessage());
+            return answer;
         } catch (Exception e){
+            e.printStackTrace();
             answer = new JSONObject();
             answer.put("ERROR", "Something has gone wrong");
             answer.put("ERRORMSG", e.getMessage());
