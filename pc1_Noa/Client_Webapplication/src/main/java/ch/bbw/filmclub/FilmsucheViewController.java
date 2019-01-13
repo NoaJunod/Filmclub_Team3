@@ -1,13 +1,18 @@
 package ch.bbw.filmclub;
 
 
+import com.sun.javafx.fxml.builder.URLBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -81,7 +86,7 @@ public class FilmsucheViewController {
         } else {
             searches.add("");
         }
-        if(!format.equals("")){
+        if(!format.equals("-")){
             searches.add(format);
             counter++;
         } else {
@@ -119,23 +124,47 @@ public class FilmsucheViewController {
     }
 
     public void search() throws IOException {
-        if(checkIfFilledIn()){
-            JSONObject root = new JSONObject();
-            root.put("title", searches.get(0));
-            root.put("format", searches.get(1));
-            root.put("director", searches.get(3));
-            root.put("year_of_production", searches.get(5));
-            root.put("duration", searches.get(2));
-            root.put("distributor", searches.get(4));
+        if(checkIfFilledIn()) {
+            String params = "?";
+            if(!title.equals("")){
+                params += "title" + "=" + title + "&";
+            }
+            if(!director.equals("")){
+                params += "director" + "=" + director + "&";
+            }
+            if(!distributor.equals("")){
+                params += "distributor" + "=" + distributor + "&";
+            }
+            if(!format.equals("-")){
+                params += "format" + "=" + format + "&";
+            }
+            if(duration != 0){
+                params += "duration" + "=" + duration + "&";
+            }
+            if(year != 0){
+                params += "yearOfProduction" + "=" + year + "&";
+            }
+            URL url = new URL("http://yeet.onthewifi.com:8080/film/query" + params);
 
-            FileWriter file = new FileWriter("D:\\M151\\Projektarbeit\\Filmclub\\pc1_Noa\\Client_Webapplication\\src\\main\\webapp\\resources\\searchCriteria.json");
-                file.write(root.toString());
-                System.out.println("Successfully Copied JSON Object to File...");
-                System.out.println("\nJSON Object: " + root);
-                file.flush();
-                file.close();
-        } else {
-            searches.clear();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Content-Type", "application/json");
+
+            System.out.println(params);
+
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+            String output;
+
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+            conn.disconnect();
         }
     }
 }
