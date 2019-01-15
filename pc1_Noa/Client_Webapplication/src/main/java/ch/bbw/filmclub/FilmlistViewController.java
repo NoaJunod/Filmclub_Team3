@@ -5,7 +5,9 @@ import ch.bbw.film.Film;
 import ch.bbw.rmi.FilmList;
 import org.json.JSONObject;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.net.MalformedURLException;
@@ -20,12 +22,23 @@ public class FilmlistViewController {
 
     private ArrayList<Film> films;
 
+    @Inject
+    private Filmclub filmclub;
 
     public FilmlistViewController() {
-
+        films = new ArrayList<>();
+        filmclub = new Filmclub();
     }
 
     public ArrayList<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(ArrayList<Film> films) {
+        this.films = films;
+    }
+
+    public void export(){
         FilmList list = null;
         try {
             list = (FilmList) Naming.lookup("//172.25.22.30/xml");
@@ -37,18 +50,16 @@ public class FilmlistViewController {
             e.printStackTrace();
         }
 
-        films = new ArrayList<>();
-        films.add(new Film(1, "I am the one", "Gay", "Mo Bamba", 6969, 69666420, "PewNews"));
         try {
             System.out.println(list.getResponse());
             list.exportFilmList(films);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return films;
     }
 
-    public void setFilms(ArrayList<Film> films) {
-        this.films = films;
+    @PostConstruct
+    public void init(){
+        filmclub.initialise();
     }
 }
