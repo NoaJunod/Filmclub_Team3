@@ -7,8 +7,10 @@ import ch.bbw.rmi.FilmList;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -21,8 +23,8 @@ import java.util.ArrayList;
  */
 
 @Named
-@RequestScoped
-public class FilmlistViewController {
+@SessionScoped
+public class FilmlistViewController implements Serializable {
 
     private ArrayList<Film> films;
 

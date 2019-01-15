@@ -6,8 +6,11 @@ import ch.bbw.filmclub.model.filmclub.Filmclub;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -16,8 +19,8 @@ import java.util.ArrayList;
  */
 
 @Named
-@RequestScoped
-public class FilmsucheViewController {
+@SessionScoped
+public class FilmsucheViewController implements Serializable {
 
     private String title, format, director, distributor;
     private int  year, duration;
@@ -84,40 +87,22 @@ public class FilmsucheViewController {
     public boolean checkIfFilledIn(){
         int counter = 0;
         if(!title.equals("")){
-            filmclub.setTitle(title);
             counter++;
-        } else {
-            filmclub.setTitle("");
         }
         if(!format.equals("-")){
-            filmclub.setFormat(format);
             counter++;
-        } else {
-            filmclub.setFormat("");
         }
         if(duration > 0){
-            filmclub.setDuration(duration);
             counter++;
-        } else {
-            filmclub.setDuration(0);
         }
         if(!director.equals("")){
-            filmclub.setDirector(director);
             counter++;
-        } else {
-            filmclub.setDirector("");
         }
         if(!distributor.equals("")){
-            filmclub.setDistributor(distributor);
             counter++;
-        } else {
-            filmclub.setDistributor("");
         }
         if(year > 0){
-            filmclub.setYear(year);
             counter++;
-        } else {
-            filmclub.setYear(0);
         }
         return counter >= 2;
     }
@@ -132,9 +117,10 @@ public class FilmsucheViewController {
 
     public void search() throws IOException {
         if(checkIfFilledIn()) {
-            filmclub.search();
-            System.out.println(filmclub.getTitle());
+            filmclub.search(title, director, distributor, format, duration, year);
+            FacesContext.getCurrentInstance().getExternalContext().dispatch("/filmliste.xhtml");
         }
+        //todo print error to add values
     }
 
     @PostConstruct

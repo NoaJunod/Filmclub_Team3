@@ -8,28 +8,26 @@
 
     <ui:define name="content">
         <h:panelGroup rendered="#{veranstaltungenController.error.isEmpty()}">
-            <h:outputText value="#{veranstaltungenController.film.title}" /><br/>
-            <h:outputText value="#{veranstaltungenController.film.director}" /><br/>
-            <h:outputText value="#{veranstaltungenController.film.yearOfProduction}" /><br/>
-            <h:outputText value="#{veranstaltungenController.film.distributor}" /><br/>
-            <h:form>
-                <h:dataTable value="#{veranstaltungenController.veranstaltungen}" var="veranstaltung">
-                    <h:column>
-                        <f:facet name="header">Datum</f:facet>
-                        #{veranstaltung.date}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Title</f:facet>
-                        #{veranstaltung.room}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Zeit</f:facet>
-                        #{veranstaltung.time}
-                    </h:column>
-                </h:dataTable>
-            </h:form>
+            <h:outputText value="#{veranstaltungenController.film.title}"/><br/>
+            <h:outputText value="#{veranstaltungenController.film.director}"/><br/>
+            <h:outputText value="#{veranstaltungenController.film.yearOfProduction}"/><br/>
+            <h:outputText value="#{veranstaltungenController.film.distributor}"/><br/>
+            <h:dataTable value="#{veranstaltungenController.veranstaltungen}" var="veranstaltung">
+                <h:column>
+                    <f:facet name="header">Datum</f:facet>
+                    #{veranstaltung.date}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{veranstaltung.room}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Zeit</f:facet>
+                    #{veranstaltung.time}
+                </h:column>
+            </h:dataTable>
         </h:panelGroup>
-        <h:outputText value="#{veranstaltungenController.error}" />
+        <h:outputText value="#{veranstaltungenController.error}"/>
     </ui:define>
 </ui:composition>
 

@@ -31,12 +31,8 @@ import java.util.*;
 @SessionScoped
 public class Filmclub implements Serializable {
 
-    private static final long serialVersionUID = 1;
-    private static boolean isInitialised;
+    private boolean isInitialised;
     private ArrayList<Film> films;
-
-    private String title, format, director, distributor;
-    private int  year, duration;
 
     public Filmclub() {
         isInitialised = false;
@@ -50,62 +46,15 @@ public class Filmclub implements Serializable {
         this.films = films;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public String getDistributor() {
-        return distributor;
-    }
-
-    public void setDistributor(String distributor) {
-        this.distributor = distributor;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
     /**
      * Suche auf dem Server nach den Filmen, die den Suchkriterien entsprechen
      * @throws IOException
      */
-    public void search() throws IOException {
+    public void search(String title, String director, String distributor, String format, int duration, int year) throws IOException {
 
         String params = "?";
 
+        //nur parameter die gesetzt sind senden
         if(!title.equals("")){
             params += "title" + "=" + title + "&";
         }
@@ -211,6 +160,7 @@ public class Filmclub implements Serializable {
 
     public void initialise(){
         if(!isInitialised)  {
+            films = new ArrayList<>();
             isInitialised = true;
         }
     }
