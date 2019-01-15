@@ -11,6 +11,7 @@ public class Film implements Serializable {
     private int yearOfProduction;
     private int duration;
     private String distributor;
+    private String imdb;
 
     public Film(int id, String title, String format, String director, int yearOfProduction, int duration, String distributor) {
         this.id = id;
@@ -76,5 +77,13 @@ public class Film implements Serializable {
 
     public void setDistributor(String distributor) {
         this.distributor = distributor;
+    }
+
+    public String getImdb() {
+        return imdb;
+    }
+
+    public void setImdb(String imdb) {
+        this.imdb = imdb;
     }
 }

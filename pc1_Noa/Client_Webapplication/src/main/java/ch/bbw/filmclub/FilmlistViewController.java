@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.lang.reflect.UndeclaredThrowableException;
@@ -15,6 +16,11 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+/**
+ *
+ * @author Noa Junod
+ */
 
 @Named
 @RequestScoped
@@ -27,7 +33,9 @@ public class FilmlistViewController {
 
     public FilmlistViewController() {
         films = new ArrayList<>();
-        filmclub = new Filmclub();
+        Film film = new Film(1, "TheRoom", "35mm", "Tommy", 2003, 99, "Netflix");
+        film.setImdb("https://www.imdb.com/title/tt0368226/");
+        films.add(film);
     }
 
     public ArrayList<Film> getFilms() {
@@ -39,6 +47,7 @@ public class FilmlistViewController {
     }
 
     public void export(){
+        System.out.println(filmclub.getFilms().get(0).getTitle());
         FilmList list = null;
         try {
             list = (FilmList) Naming.lookup("//172.25.22.30/xml");

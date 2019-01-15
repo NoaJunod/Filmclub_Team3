@@ -6,13 +6,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,6 +20,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+/**
+ *
+ * @author Noa Junod
+ */
 
 @Named
 @RequestScoped
@@ -35,6 +37,7 @@ public class FilmsucheViewController {
 
     private ArrayList<Film> films;
 
+    @Inject
     private Filmclub filmclub;
 
     public FilmsucheViewController() {
@@ -93,22 +96,40 @@ public class FilmsucheViewController {
     public boolean checkIfFilledIn(){
         int counter = 0;
         if(!title.equals("")){
+            filmclub.setTitle(title);
             counter++;
+        } else {
+            filmclub.setTitle("");
         }
         if(!format.equals("-")){
+            filmclub.setFormat(format);
             counter++;
+        } else {
+            filmclub.setFormat("");
         }
         if(duration > 0){
+            filmclub.setDuration(duration);
             counter++;
+        } else {
+            filmclub.setDuration(0);
         }
         if(!director.equals("")){
+            filmclub.setDirector(director);
             counter++;
+        } else {
+            filmclub.setDirector("");
         }
         if(!distributor.equals("")){
+            filmclub.setDistributor(distributor);
             counter++;
+        } else {
+            filmclub.setDistributor("");
         }
         if(year > 0){
+            filmclub.setYear(year);
             counter++;
+        } else {
+            filmclub.setYear(0);
         }
         return counter >= 2;
     }
@@ -123,59 +144,9 @@ public class FilmsucheViewController {
 
     public void search() throws IOException {
         if(checkIfFilledIn()) {
-            String params = "?";
-            if(!title.equals("")){
-                params += "title" + "=" + title + "&";
-            }
-            if(!director.equals("")){
-                params += "director" + "=" + director + "&";
-            }
-            if(!distributor.equals("")){
-                params += "distributor" + "=" + distributor + "&";
-            }
-            if(!format.equals("-")){
-                params += "format" + "=" + format + "&";
-            }
-            if(duration != 0){
-                params += "duration" + "=" + duration + "&";
-            }
-            if(year != 0){
-                params += "yearOfProduction" + "=" + year + "&";
-            }
-
-            filmclub.search(params);
+            filmclub.search();
+            System.out.println(filmclub.getTitle());
         }
-    }
-
-    //todo delete
-    public static void main(String[] args) throws IOException {
-        URL url = new URL("http://yeet.onthewifi.com:8080/film/query");
-
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Content-Type", "application/json");
-
-        if (conn.getResponseCode() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-        }
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                (conn.getInputStream())));
-
-
-        StringBuilder jsonString = new StringBuilder();
-        String receivedLine;
-        while ((receivedLine = br.readLine()) != null)
-            jsonString.append(receivedLine);
-
-        System.out.println("Response from Server .... \n");
-        System.out.println(jsonString.toString());
-
-        Gson gson = new Gson();
-        JsonObject reasonsJson = gson.fromJson(jsonString.toString(), JsonObject.class);
-        JsonArray reasonsFilmsArray = reasonsJson.getAsJsonArray("films");
-        List films = gson.fromJson(reasonsFilmsArray, new TypeToken<List<Film>>(){}.getType());
-        System.out.println(films);
     }
 
     @PostConstruct

@@ -3,16 +3,21 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="./resources/m151Template.xhtml">
 
+    /**
+    *
+    * @author Noa Junod
+    */
+
     <ui:define name="content">
         <h:form>
-            <h:dataTable value="#{filmsucheViewController.filmsArray}" var="film" >
+            <h:dataTable value="#{filmlistViewController.films}" var="film" >
                 <h:column>
                     <f:facet name="header">Id</f:facet>
                     #{film.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Title</f:facet>
-                    #{film.title}
+                    <a href="#{film.imdb}">#{film.title}</a>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Format</f:facet>
