@@ -5,10 +5,34 @@
 
     <ui:define name="content">
         <h:form>
-            <h:dataTable value="#{FilmclubViewController.filme}" var="film" >
+            <h:dataTable value="#{filmsucheViewController.filmsArray}" var="film" >
                 <h:column>
-                    <f:facet name="header">Titel</f:facet>
-                    <h:outputText value="#{filmlistViewController.films}"/>
+                    <f:facet name="header">Id</f:facet>
+                    #{film.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{film.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Format</f:facet>
+                    #{film.format}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Director</f:facet>
+                    #{film.director}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Year Of Production</f:facet>
+                    #{film.yearOfProduction}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Duration</f:facet>
+                    #{film.duration}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Distributor</f:facet>
+                    #{film.distributor}
                 </h:column>
             </h:dataTable>
         </h:form>

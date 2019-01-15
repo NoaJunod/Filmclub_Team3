@@ -1,19 +1,20 @@
 package ch.bbw.filmclub;
 
 
-import com.sun.javafx.fxml.builder.URLBuilder;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import ch.bbw.film.Film;
+import com.google.gson.Gson;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 @Named
@@ -22,12 +23,13 @@ public class FilmsucheViewController {
 
     private String title, format, director, distributor;
     private int  year, duration;
-    private Filmclub filmclub;
-    private ArrayList<String> searches;
+
+    private Film[] filmsArray;
+
+    private ArrayList<Film> films;
 
     public FilmsucheViewController() {
-        filmclub = new Filmclub();
-        searches = new ArrayList<>();
+        films = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -81,46 +83,36 @@ public class FilmsucheViewController {
     public boolean checkIfFilledIn(){
         int counter = 0;
         if(!title.equals("")){
-            searches.add(title);
             counter++;
-        } else {
-            searches.add("");
         }
         if(!format.equals("-")){
-            searches.add(format);
             counter++;
-        } else {
-            searches.add("");
         }
         if(duration > 0){
-            searches.add(duration + "");
             counter++;
-        } else {
-            searches.add("");
         }
         if(!director.equals("")){
-            searches.add(director);
             counter++;
-        } else {
-            searches.add("");
         }
         if(!distributor.equals("")){
-            searches.add(distributor);
             counter++;
-        } else {
-            searches.add("");
         }
         if(year > 0){
-            searches.add(year + "");
             counter++;
-        } else {
-            searches.add("");
         }
         if(counter >= 2){
             return true;
         } else {
             return false;
         }
+    }
+
+    public Film[] getFilmsArray() {
+        return filmsArray;
+    }
+
+    public void setFilmsArray(Film[] filmsArray) {
+        this.filmsArray = filmsArray;
     }
 
     public void search() throws IOException {
@@ -158,11 +150,27 @@ public class FilmsucheViewController {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
-            String output;
+            String output = "";
 
             System.out.println("Output from Server .... \n");
             while ((output = br.readLine()) != null) {
                 System.out.println(output);
+
+
+                JSONParser parser = new JSONParser();
+                try {
+                    Object root = parser.parse(output);
+                    JSONObject jsonObject = (JSONObject) root;
+                    JSONArray filmsJSON = (JSONArray) jsonObject.get("films");
+                    System.out.println(films.toString());
+                    Gson gson = new Gson();
+                    if(filmsJSON.size() > 0) {
+                        filmsArray = gson.fromJson(filmsJSON.toString(), Film[].class);
+                        System.out.println(filmsArray[0].getTitle());
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
             conn.disconnect();
         }

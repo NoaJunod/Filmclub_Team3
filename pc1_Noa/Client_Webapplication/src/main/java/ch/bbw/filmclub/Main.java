@@ -2,6 +2,8 @@ package ch.bbw.filmclub;
 
 import ch.bbw.film.Film;
 import ch.bbw.rmi.FilmList;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.UndeclaredThrowableException;
 import java.net.MalformedURLException;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws Throwable {
-        FilmList list = null;
+        /*FilmList list = null;
         try {
             list = (FilmList) Naming.lookup("//172.25.22.30/xml");
         } catch (NotBoundException e) {
@@ -40,6 +42,19 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
+        FilmsucheViewController filmsucheViewController = new FilmsucheViewController();
+
+        filmsucheViewController.setDuration(90);
+        filmsucheViewController.setYear(1992);
+        filmsucheViewController.setTitle("");
+        filmsucheViewController.setDirector("");
+        filmsucheViewController.setFormat("-");
+        filmsucheViewController.setDistributor("");
+
+        filmsucheViewController.search();
+
+        JSONParser parser = new JSONParser();
     }
 }
