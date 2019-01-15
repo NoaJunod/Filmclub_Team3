@@ -23,17 +23,25 @@ public class VeranstaltungenController {
 
     public VeranstaltungenController() {
         //get which film from get request
-        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        long filmID = Long.parseLong(params.get("filmID"));
+        long filmID;
+        try {
+            Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+            filmID = Long.parseLong(params.get("filmID"));
+        } catch (NumberFormatException nfex){
+            error = "filmID muss eine nummer sein!";
+            return;
+        }
 
         FilmVeranstaltungResponse fVR = VeranstaltungenManager.getVeranstalungenFromApi(filmID);
         //null value handling
         if(fVR == null){
-            error = "No film with this id could be found";
+            error = "Kein Film mit dieser ID konnte gefunden werden";
+            return;
         } else {
             film = fVR.getFilm();
             veranstaltungen = fVR.getVeranstaltungen();
         }
+        error = "";
     }
 
     public List<Veranstaltung> getVeranstaltungen() {

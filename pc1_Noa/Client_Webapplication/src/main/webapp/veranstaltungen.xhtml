@@ -7,11 +7,11 @@
                 template="./resources/m151Template.xhtml">
 
     <ui:define name="content">
-        <h:panelGroup rendered="#{veranstaltungenController.error.isEmpty}">
-            <h:outputText value="#{veranstaltungenController.film.title}" />
-            <h:outputText value="#{veranstaltungenController.film.director}" />
-            <h:outputText value="#{veranstaltungenController.film.yearOfProduction}" />
-            <h:outputText value="#{veranstaltungenController.film.distributor}" />
+        <h:panelGroup rendered="#{veranstaltungenController.error.isEmpty()}">
+            <h:outputText value="#{veranstaltungenController.film.title}" /><br/>
+            <h:outputText value="#{veranstaltungenController.film.director}" /><br/>
+            <h:outputText value="#{veranstaltungenController.film.yearOfProduction}" /><br/>
+            <h:outputText value="#{veranstaltungenController.film.distributor}" /><br/>
             <h:form>
                 <h:dataTable value="#{veranstaltungenController.veranstaltungen}" var="veranstaltung">
                     <h:column>
