@@ -1,4 +1,6 @@
 package ch.bbw.filmclub;
+import ch.bbw.filmclub.model.filmclub.Filmclub;
+
 import java.io.*;
 
 import javax.annotation.PostConstruct;

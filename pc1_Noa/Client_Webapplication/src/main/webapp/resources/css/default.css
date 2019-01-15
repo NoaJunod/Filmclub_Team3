@@ -34,3 +34,7 @@ a:link:hover, a:visited:hover  {
     background-color: #AFAFAF;
 }
 
+.titleLink {
+    border: none !important;
+}
+

@@ -2,15 +2,13 @@ package ch.bbw.filmclub;
 
 
 import ch.bbw.film.Film;
+import ch.bbw.filmclub.model.filmclub.Filmclub;
 import ch.bbw.rmi.FilmList;
-import org.json.JSONObject;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;

@@ -2,6 +2,7 @@ package ch.bbw.filmclub;
 
 
 import ch.bbw.film.Film;
+import ch.bbw.filmclub.model.filmclub.Filmclub;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
