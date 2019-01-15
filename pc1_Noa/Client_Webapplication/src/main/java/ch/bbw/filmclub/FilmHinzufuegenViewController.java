@@ -21,7 +21,8 @@ import javax.inject.Named;
 @RequestScoped
 public class FilmHinzufuegenViewController {
 
-    private String title, director;
+    private String title, format, director, distributor;
+    private int  year, duration;
 
     public FilmHinzufuegenViewController() {
     }
@@ -42,18 +43,50 @@ public class FilmHinzufuegenViewController {
         this.director = director;
     }
 
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getDistributor() {
+        return distributor;
+    }
+
+    public void setDistributor(String distributor) {
+        this.distributor = distributor;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
     public void add() throws IOException {
         //title.trim();
         //director.trim();
         //String params = "title=" + "Bible421" + "&format=35 mm&director=" + "Sam" + "&yearOfProduction=0&duration=69&distributor=Frank&director=Frank2";
 
         Map<String, Object> params = new HashMap<>();
-        params.put("title", "BItsch UHH NO I MEANT BIBLE");
-        params.put("format", "420 mm");
-        params.put("director", "FrankTheDank");
-        params.put("yearOfProduction", 1);
-        params.put("duration", 69);
-        params.put("distributor", "Lukases Arts");
+        params.put("title", title);
+        params.put("format", format);
+        params.put("director", director);
+        params.put("yearOfProduction", year);
+        params.put("duration", duration);
+        params.put("distributor", distributor);
 
         StringJoiner sj = new StringJoiner("&");
         for(Map.Entry<String,Object> entry : params.entrySet())

@@ -13,6 +13,7 @@ import javax.inject.Named;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -100,11 +101,7 @@ public class FilmsucheViewController {
         if(year > 0){
             counter++;
         }
-        if(counter >= 2){
-            return true;
-        } else {
-            return false;
-        }
+        return counter >= 2;
     }
 
     public Film[] getFilmsArray() {
@@ -155,23 +152,13 @@ public class FilmsucheViewController {
             System.out.println("Output from Server .... \n");
             while ((output = br.readLine()) != null) {
                 System.out.println(output);
-
-
-                JSONParser parser = new JSONParser();
-                try {
-                    Object root = parser.parse(output);
-                    JSONObject jsonObject = (JSONObject) root;
-                    JSONArray filmsJSON = (JSONArray) jsonObject.get("films");
-                    System.out.println(films.toString());
                     Gson gson = new Gson();
-                    if(filmsJSON.size() > 0) {
-                        filmsArray = gson.fromJson(filmsJSON.toString(), Film[].class);
+                    if(output.length() > 0) {
+                        filmsArray = gson.fromJson(output, Film[].class);
                         System.out.println(filmsArray[0].getTitle());
                     }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
             }
+
             conn.disconnect();
         }
     }

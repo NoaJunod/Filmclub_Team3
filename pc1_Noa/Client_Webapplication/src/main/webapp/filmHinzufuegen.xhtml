@@ -10,9 +10,23 @@
             <h:panelGrid columns="2">
                 <h:outputText value="Titel: "/>
                 <h:inputText value="#{filmHinzufuegenViewController.title}"/>
+                <h:outputText value="Format: "/>
+                <h:selectOneMenu value="#{filmHinzufuegenViewController.format}">
+                    <f:selectItem itemValue="-" itemLabel="Wählen Sie ein Format aus" />
+                    <f:selectItem itemValue="35mm" itemLabel="35mm" />
+                    <f:selectItem itemValue="16mm" itemLabel="16mm" />
+                    <f:selectItem itemValue="35mm + 16" itemLabel="35mm + 16" />
+                </h:selectOneMenu>
                 <h:outputText value="Director: "/>
                 <h:inputText value="#{filmHinzufuegenViewController.director}"/>
-                <h:commandButton value="Hinzufügen" action="#{filmHinzufuegenViewController.add}"/>
+                <h:outputText value="Year of Production: "/>
+                <h:inputText value="#{filmHinzufuegenViewController.year}"/>
+                <h:outputText value="Duration: "/>
+                <h:inputText value="#{filmHinzufuegenViewController.duration}"/>
+                <h:outputText value="Distributor: "/>
+                <h:inputText value="#{filmHinzufuegenViewController.distributor}"/>
+                <h:outputText value=" "/>
+                <h:commandButton value = "Suchen" action = "#{filmHinzufuegenViewController.add}" />
             </h:panelGrid>
         </h:form>
     </ui:define>
