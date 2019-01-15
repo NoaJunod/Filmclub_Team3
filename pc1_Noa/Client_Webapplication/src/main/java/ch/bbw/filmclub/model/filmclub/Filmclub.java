@@ -64,7 +64,8 @@ public class Filmclub implements Serializable {
         if(!distributor.equals("")){
             params += "distributor" + "=" + distributor + "&";
         }
-        if(!format.equals("")){
+        //is sometime also "-"
+        if(!format.equals("-") && !format.equals("")){
             params += "format" + "=" + format + "&";
         }
         if(duration != 0){
@@ -158,10 +159,10 @@ public class Filmclub implements Serializable {
         conn.disconnect();
     }
 
-    public void initialise(){
+    /*public void initialise(){
         if(!isInitialised)  {
             films = new ArrayList<>();
             isInitialised = true;
         }
-    }
+    }*/
 }

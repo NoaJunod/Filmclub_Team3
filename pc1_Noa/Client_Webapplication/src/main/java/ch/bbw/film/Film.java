@@ -1,5 +1,7 @@
 package ch.bbw.film;
 
+import ch.bbw.filmclub.model.filmclub.IMDBReader;
+
 import java.io.Serializable;
 
 public class Film implements Serializable {
@@ -12,6 +14,7 @@ public class Film implements Serializable {
     private int duration;
     private String distributor;
     private String imdb;
+    private String veranstaltungen;
 
     public Film(int id, String title, String format, String director, int yearOfProduction, int duration, String distributor) {
         this.id = id;
@@ -21,6 +24,9 @@ public class Film implements Serializable {
         this.yearOfProduction = yearOfProduction;
         this.duration = duration;
         this.distributor = distributor;
+        IMDBReader imdbReader = new IMDBReader(title);
+        imdb = imdbReader.getLinkOfTitle();
+        this.veranstaltungen = "veranstaltungen.xhtml?filmID=" + id;
     }
 
     public String getTitle() {
@@ -85,5 +91,13 @@ public class Film implements Serializable {
 
     public void setImdb(String imdb) {
         this.imdb = imdb;
+    }
+
+    public String getVeranstaltungen() {
+        return veranstaltungen;
+    }
+
+    public void setVeranstaltungen(String veranstaltungen) {
+        this.veranstaltungen = veranstaltungen;
     }
 }

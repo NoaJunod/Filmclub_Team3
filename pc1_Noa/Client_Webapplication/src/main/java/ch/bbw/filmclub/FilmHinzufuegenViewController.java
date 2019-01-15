@@ -80,6 +80,6 @@ public class FilmHinzufuegenViewController {
 
     @PostConstruct
     public void init(){
-        filmclub.initialise();
+        //filmclub.initialise();
     }
 }

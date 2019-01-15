@@ -39,6 +39,10 @@
                     <f:facet name="header">Distributor</f:facet>
                     #{film.distributor}
                 </h:column>
+                <h:column>
+                    <f:facet name="header">Veranstaltungen</f:facet>
+                    <a href="#{film.veranstaltungen}" class="titleLink">Zu den Veranstaltungen</a>
+                </h:column>
             </h:dataTable>
             <h:commandButton value="Exportieren" action="#{filmlistViewController.export}"/>
         </h:form>

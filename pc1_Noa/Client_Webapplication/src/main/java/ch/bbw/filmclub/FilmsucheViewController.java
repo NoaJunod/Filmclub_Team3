@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
@@ -27,13 +28,11 @@ public class FilmsucheViewController implements Serializable {
 
     private Film[] filmsArray;
 
-    private ArrayList<Film> films;
-
+    @Inject
     private Filmclub filmclub;
 
     public FilmsucheViewController() {
-        films = new ArrayList<>();
-        filmclub = new Filmclub();
+        //filmclub = new Filmclub();
     }
 
     public String getTitle() {
@@ -125,6 +124,6 @@ public class FilmsucheViewController implements Serializable {
 
     @PostConstruct
     public void init(){
-        filmclub.initialise();
+        //filmclub.initialise();
     }
 }
