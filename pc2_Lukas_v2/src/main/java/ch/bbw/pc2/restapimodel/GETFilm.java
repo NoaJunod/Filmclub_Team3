@@ -57,7 +57,7 @@ public class GETFilm {
 
             for (Film f : films) {
                 JSONObject tempJSON = new JSONObject();
-                tempJSON.put("Id", f.getFilmId());
+                tempJSON.put("id", f.getFilmId());
                 tempJSON.put("title", f.getTitle());
                 tempJSON.put("format", f.getFormat());
                 tempJSON.put("director", f.getDirector());
