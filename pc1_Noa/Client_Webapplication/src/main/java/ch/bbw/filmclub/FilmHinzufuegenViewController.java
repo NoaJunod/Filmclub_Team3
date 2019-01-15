@@ -116,12 +116,12 @@ public class FilmHinzufuegenViewController {
         }
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 (conn.getInputStream())));
-        StringBuilder json = new StringBuilder();
+        StringBuilder jsonString = new StringBuilder();
         String receivedLine;
         while ((receivedLine = br.readLine()) != null)
-            json.append(receivedLine);
+            jsonString.append(receivedLine);
 
-        JSONObject jsonObject = new JSONObject(json.toString());
+        JSONObject jsonObject = new JSONObject(jsonString.toString());
         System.out.println(jsonObject.toString());
 
         /*
@@ -147,6 +147,8 @@ public class FilmHinzufuegenViewController {
         }*/
         conn.disconnect();
     }
+
+    //todo delete
 
     public static void main(String[] args) throws IOException {
         FilmHinzufuegenViewController filmHinzufuegenViewController = new FilmHinzufuegenViewController();

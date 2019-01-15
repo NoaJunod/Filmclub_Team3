@@ -3,6 +3,9 @@ package ch.bbw.filmclub;
 
 import ch.bbw.film.Film;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,6 +20,8 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -147,9 +152,22 @@ public class FilmsucheViewController {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
-            String output = "";
 
-            System.out.println("Output from Server .... \n");
+
+            StringBuilder jsonString = new StringBuilder();
+            String receivedLine;
+            while ((receivedLine = br.readLine()) != null)
+                jsonString.append(receivedLine);
+
+            System.out.println("Response from Server .... \n");
+            System.out.println(jsonString.toString());
+
+            Gson gson = new Gson();
+            JsonObject reasonsJson = gson.fromJson(jsonString.toString(), JsonObject.class);
+            JsonArray reasonsFilmsArray = reasonsJson.getAsJsonArray("films");
+            films = gson.fromJson(reasonsFilmsArray, new TypeToken<List<Film>>(){}.getType());
+
+            /*
             while ((output = br.readLine()) != null) {
                 System.out.println(output);
                     Gson gson = new Gson();
@@ -157,9 +175,40 @@ public class FilmsucheViewController {
                         filmsArray = gson.fromJson(output, Film[].class);
                         System.out.println(filmsArray[0].getTitle());
                     }
-            }
+            }*/
 
             conn.disconnect();
         }
+    }
+
+    //todo delete
+    public static void main(String[] args) throws IOException {
+        URL url = new URL("http://yeet.onthewifi.com:8080/film/query");
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-Type", "application/json");
+
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+        }
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                (conn.getInputStream())));
+
+
+        StringBuilder jsonString = new StringBuilder();
+        String receivedLine;
+        while ((receivedLine = br.readLine()) != null)
+            jsonString.append(receivedLine);
+
+        System.out.println("Response from Server .... \n");
+        System.out.println(jsonString.toString());
+
+        Gson gson = new Gson();
+        JsonObject reasonsJson = gson.fromJson(jsonString.toString(), JsonObject.class);
+        JsonArray reasonsFilmsArray = reasonsJson.getAsJsonArray("films");
+        List films = gson.fromJson(reasonsFilmsArray, new TypeToken<List<Film>>(){}.getType());
+        System.out.println(films);
     }
 }
