@@ -34,7 +34,7 @@ public class GETEventsByFilmID {
             Film f = new Film();
             session.load(f, filmID);
             JSONObject filmObject = new JSONObject();
-            filmObject.put("Id", f.getFilmId());
+            filmObject.put("id", f.getFilmId());
             filmObject.put("title", f.getTitle());
             filmObject.put("format", f.getFormat());
             filmObject.put("director", f.getDirector());

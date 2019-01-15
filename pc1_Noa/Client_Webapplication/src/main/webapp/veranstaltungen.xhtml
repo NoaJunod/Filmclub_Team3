@@ -1,41 +1,35 @@
+<!--
+ Author: Lukas Meili
+ -->
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="./resources/m151Template.xhtml">
 
     <ui:define name="content">
-        <h:form>
-            <h:dataTable value="#{filmsucheViewController.filmsArray}" var="film" >
-                <h:column>
-                    <f:facet name="header">Id</f:facet>
-                    #{film.id}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Title</f:facet>
-                    #{film.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Format</f:facet>
-                    #{film.format}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Director</f:facet>
-                    #{film.director}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Year Of Production</f:facet>
-                    #{film.yearOfProduction}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Duration</f:facet>
-                    #{film.duration}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Distributor</f:facet>
-                    #{film.distributor}
-                </h:column>
-            </h:dataTable>
-        </h:form>
+        <h:panelGroup rendered="#{veranstaltungenController.error.isEmpty}">
+            <h:outputText value="#{veranstaltungenController.film.title}" />
+            <h:outputText value="#{veranstaltungenController.film.director}" />
+            <h:outputText value="#{veranstaltungenController.film.yearOfProduction}" />
+            <h:outputText value="#{veranstaltungenController.film.distributor}" />
+            <h:form>
+                <h:dataTable value="#{veranstaltungenController.veranstaltungen}" var="veranstaltung">
+                    <h:column>
+                        <f:facet name="header">Datum</f:facet>
+                        #{veranstaltung.date}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Title</f:facet>
+                        #{veranstaltung.room}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Zeit</f:facet>
+                        #{veranstaltung.time}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+        <h:outputText value="#{veranstaltungenController.error}" />
     </ui:define>
 </ui:composition>
 

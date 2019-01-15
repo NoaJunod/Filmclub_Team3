@@ -1,5 +1,4 @@
 package ch.bbw.filmclub;
-
 import java.io.*;
 
 import javax.annotation.PostConstruct;

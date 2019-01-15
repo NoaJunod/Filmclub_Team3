@@ -2,24 +2,12 @@ package ch.bbw.filmclub;
 
 
 import ch.bbw.film.Film;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -37,7 +25,6 @@ public class FilmsucheViewController {
 
     private ArrayList<Film> films;
 
-    @Inject
     private Filmclub filmclub;
 
     public FilmsucheViewController() {
