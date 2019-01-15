@@ -27,7 +27,7 @@ public class DBSession {
     }
 
     /**
-     * Get an active session to the database.
+     * Get an active session of the database.
      * @return
      * @throws HibernateException
      */
