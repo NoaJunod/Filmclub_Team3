@@ -9,7 +9,10 @@
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="Titel: "/>
-                <h:inputText value=""/>
+                <h:inputText value="#{filmHinzufuegenViewController.title}"/>
+                <h:outputText value="Director: "/>
+                <h:inputText value="#{filmHinzufuegenViewController.director}"/>
+                <h:commandButton value="Hinzufügen" action="#{filmHinzufuegenViewController.add}"/>
             </h:panelGrid>
         </h:form>
     </ui:define>
