@@ -25,12 +25,12 @@ import java.util.ArrayList;
 @Named
 @SessionScoped
 public class FilmlistViewController implements Serializable {
-
-    @Inject
+    //@Inject
     private Filmclub filmclub;
 
     public FilmlistViewController() {
         //films = new ArrayList<>();
+        filmclub = Filmclub.getInstance();
     }
 
     public ArrayList<Film> getFilms() {

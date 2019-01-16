@@ -30,12 +30,12 @@ import java.util.*;
 @Named
 @SessionScoped
 public class Filmclub implements Serializable {
-
+    private static Filmclub instance;
     private boolean isInitialised;
     private ArrayList<Film> films;
 
     public Filmclub() {
-        isInitialised = false;
+        instance = this;
     }
 
     public ArrayList<Film> getFilms() {
@@ -100,8 +100,8 @@ public class Filmclub implements Serializable {
         System.out.println(jsonString.toString());
 
         Gson gson = new Gson();
-        JsonObject reasonsJson = gson.fromJson(jsonString.toString(), JsonObject.class);
-        JsonArray reasonsFilmsArray = reasonsJson.getAsJsonArray("films");
+        JsonObject responseJson = gson.fromJson(jsonString.toString(), JsonObject.class);
+        JsonArray reasonsFilmsArray = responseJson.getAsJsonArray("films");
         films = gson.fromJson(reasonsFilmsArray, new TypeToken<List<Film>>(){}.getType());
 
         conn.disconnect();
@@ -165,4 +165,8 @@ public class Filmclub implements Serializable {
             isInitialised = true;
         }
     }*/
+
+    public static Filmclub getInstance() {
+        return instance == null ? new Filmclub() : instance;
+    }
 }

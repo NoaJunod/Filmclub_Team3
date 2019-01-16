@@ -28,11 +28,12 @@ public class FilmsucheViewController implements Serializable {
 
     private Film[] filmsArray;
 
-    @Inject
+    //@Inject
     private Filmclub filmclub;
 
     public FilmsucheViewController() {
         //filmclub = new Filmclub();
+        filmclub = Filmclub.getInstance();
     }
 
     public String getTitle() {
