@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="M151Webapplication:war exploded">
-    <output-path />
+    <output-path>$PROJECT_DIR$/target/M151Webapplication</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

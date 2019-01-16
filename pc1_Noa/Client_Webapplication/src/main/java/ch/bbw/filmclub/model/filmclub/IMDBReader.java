@@ -19,15 +19,13 @@ public class IMDBReader {
     Document docSearch;
     Document docMovie;
 
-    public IMDBReader(String title) {
-        try {
-            this.urlSearch = "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + title + "&s=tt";
+    public IMDBReader(String title) throws IOException {
+
             title = title.toLowerCase();
+            this.urlSearch = "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + title + "&s=tt";
             this.title = title;
             this.docSearch = Jsoup.connect(urlSearch).get();
-        } catch (IOException ex) {
-            Logger.getLogger(IMDBReader.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     public boolean movieExists() {
@@ -53,7 +51,11 @@ public class IMDBReader {
     }
 
     public String getLinkOfTitle() {
-        return urlMovie;
+        System.out.println(urlMovie);
+        if(movieExists()){
+            return urlMovie;
+        }
+        return "https://www.youtube.com/user/PewDiePie";
     }
 
     public String getDirectorOfTitle() {

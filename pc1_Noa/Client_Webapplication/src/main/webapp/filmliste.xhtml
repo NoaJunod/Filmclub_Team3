@@ -17,7 +17,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Title</f:facet>
-                    <a href="#{film.imdb}" class="titleLink">#{film.title}</a>
+                    <h:commandLink action="#{film.redirect}" value="#{film.title}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">Format</f:facet>
@@ -41,7 +41,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Veranstaltungen</f:facet>
-                    <h:link outcome="veranstaltungen" value="Zu den Veranstaltungen">
+                    <h:link outcome="veranstaltungen" value="Zu den Veranstaltungen" >
                         <f:param name="filmID" value="#{film.id}" />
                     </h:link>
                 </h:column>
