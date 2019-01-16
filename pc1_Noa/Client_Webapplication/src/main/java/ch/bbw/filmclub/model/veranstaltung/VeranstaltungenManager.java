@@ -32,7 +32,7 @@ public class VeranstaltungenManager {
         URL url;
         try {
             //url with parameter
-            url = new URL("http://yeet.onthewifi.com:8080/film/events_by_film_id?filmID=" + id);
+            url = new URL("http://172.25.22.33:8080/film/events_by_film_id?filmID=" + id);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             System.err.println("URL is probably wrong!");

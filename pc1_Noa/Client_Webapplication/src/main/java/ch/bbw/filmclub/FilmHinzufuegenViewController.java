@@ -1,5 +1,6 @@
 package ch.bbw.filmclub;
 import ch.bbw.filmclub.model.filmclub.Filmclub;
+import com.google.gson.JsonObject;
 
 import java.io.*;
 
@@ -17,7 +18,7 @@ import javax.inject.Named;
 @RequestScoped
 public class FilmHinzufuegenViewController {
 
-    private String title, format, director, distributor;
+    private String title, format, director, distributor, response;
     private int  year, duration;
 
     @Inject
@@ -74,8 +75,21 @@ public class FilmHinzufuegenViewController {
         this.duration = duration;
     }
 
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
+
     public void add() throws IOException {
-        filmclub.add(title, format, director, year, duration, distributor);
+        if(title.equals("") || director.equals("")  || distributor.equals("") || format.equals("") || duration == 0 || year == 0) {
+            response = "Please enter all fields!";
+        } else {
+            JsonObject jsonObject = filmclub.add(title, format, director, year, duration, distributor);
+            response = jsonObject.get("SUCCESS").getAsString();
+        }
     }
 
     @PostConstruct

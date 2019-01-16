@@ -94,6 +94,10 @@ public class Film implements Serializable {
         this.imdb = imdb;
     }
 
+    /**
+     * Auf eine externe URl zugreiffen (hier imdb)
+     * @throws IOException
+     */
     public void redirect() throws IOException {
         IMDBReader imdbReader = new IMDBReader(title);
         imdb = imdbReader.getLinkOfTitle();

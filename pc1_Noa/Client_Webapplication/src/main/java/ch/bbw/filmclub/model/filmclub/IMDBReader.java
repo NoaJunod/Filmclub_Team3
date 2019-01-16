@@ -1,5 +1,6 @@
 package ch.bbw.filmclub.model.filmclub;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jsoup.Jsoup;
@@ -11,7 +12,7 @@ import org.jsoup.select.Elements;
  *
  * @author 5im16nivanderheide
  */
-public class IMDBReader {
+public class IMDBReader  {
 
     private String urlSearch;
     private String urlMovie;

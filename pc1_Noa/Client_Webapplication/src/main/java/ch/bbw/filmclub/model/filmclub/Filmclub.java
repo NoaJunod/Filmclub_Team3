@@ -75,7 +75,7 @@ public class Filmclub implements Serializable {
             params += "yearOfProduction" + "=" + year + "&";
         }
 
-        URL url = new URL("http://yeet.onthewifi.com:8080/film/query" + params);
+        URL url = new URL("http://172.25.22.33:8080/film/query" + params);
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -111,7 +111,8 @@ public class Filmclub implements Serializable {
      * Film in die Datenbank hinzufügen
      * @throws IOException
      */
-    public void add(String title, String format, String director, int year, int duration, String distributor) throws IOException {
+    public JsonObject add(String title, String format, String director, int year, int duration, String distributor) throws IOException {
+        //alle parameter senden
         Map<String, Object> params = new HashMap<>();
         params.put("title", title);
         params.put("format", format);
@@ -129,7 +130,7 @@ public class Filmclub implements Serializable {
         int    postDataLength = postData.length;
         URL    url            = null;
         try {
-            url = new URL("http://yeet.onthewifi.com:8080/film/add");
+            url = new URL("http://172.25.22.33:8080/film/add");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -153,18 +154,12 @@ public class Filmclub implements Serializable {
         while ((receivedLine = br.readLine()) != null)
             jsonString.append(receivedLine);
 
-        JSONObject jsonObject = new JSONObject(jsonString.toString());
+        JsonObject jsonObject = new Gson().fromJson(jsonString.toString(), JsonObject.class);
         System.out.println(jsonObject.toString());
 
         conn.disconnect();
+        return jsonObject;
     }
-
-    /*public void initialise(){
-        if(!isInitialised)  {
-            films = new ArrayList<>();
-            isInitialised = true;
-        }
-    }*/
 
     public static Filmclub getInstance() {
         return instance == null ? new Filmclub() : instance;
