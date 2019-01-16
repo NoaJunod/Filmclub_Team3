@@ -25,21 +25,16 @@ import java.util.ArrayList;
 @Named
 @SessionScoped
 public class FilmlistViewController implements Serializable {
-    //@Inject
+    private String error;
     private Filmclub filmclub;
 
     public FilmlistViewController() {
-        //films = new ArrayList<>();
         filmclub = Filmclub.getInstance();
     }
 
     public ArrayList<Film> getFilms() {
         return filmclub.getFilms();
     }
-
-    /*public void setFilms(ArrayList<Film> films) {
-        this.films = films;
-    }*/
 
     public void export(){
         System.out.println(filmclub.getFilms().get(0).getTitle());
@@ -62,8 +57,11 @@ public class FilmlistViewController implements Serializable {
         }
     }
 
-    @PostConstruct
-    public void init(){
-        //filmclub.initialise();
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

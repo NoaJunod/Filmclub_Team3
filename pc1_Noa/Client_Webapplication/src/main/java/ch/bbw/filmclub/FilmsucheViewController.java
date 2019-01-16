@@ -23,16 +23,14 @@ import java.util.ArrayList;
 @SessionScoped
 public class FilmsucheViewController implements Serializable {
 
-    private String title, format, director, distributor;
+    private String title, format, director, distributor, error;
     private int  year, duration;
-
-    private Film[] filmsArray;
 
     //@Inject
     private Filmclub filmclub;
 
     public FilmsucheViewController() {
-        //filmclub = new Filmclub();
+        error = "";
         filmclub = Filmclub.getInstance();
     }
 
@@ -84,6 +82,22 @@ public class FilmsucheViewController implements Serializable {
         this.duration = duration;
     }
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public Filmclub getFilmclub() {
+        return filmclub;
+    }
+
+    public void setFilmclub(Filmclub filmclub) {
+        this.filmclub = filmclub;
+    }
+
     public boolean checkIfFilledIn(){
         int counter = 0;
         if(!title.equals("")){
@@ -107,24 +121,12 @@ public class FilmsucheViewController implements Serializable {
         return counter >= 2;
     }
 
-    public Film[] getFilmsArray() {
-        return filmsArray;
-    }
-
-    public void setFilmsArray(Film[] filmsArray) {
-        this.filmsArray = filmsArray;
-    }
-
     public void search() throws IOException {
         if(checkIfFilledIn()) {
             filmclub.search(title, director, distributor, format, duration, year);
             FacesContext.getCurrentInstance().getExternalContext().dispatch("/filmliste.xhtml");
+        } else {
+            error = "Nicht genügend Suchparamter angegeben!";
         }
-        //todo print error to add values
-    }
-
-    @PostConstruct
-    public void init(){
-        //filmclub.initialise();
     }
 }

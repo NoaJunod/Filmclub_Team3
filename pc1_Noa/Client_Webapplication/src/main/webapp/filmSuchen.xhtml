@@ -29,6 +29,7 @@
                 <h:outputText value=" "/>
                 <h:commandButton value = "Suchen" action = "#{filmsucheViewController.search}" />
             </h:panelGrid>
+            <h:outputText value="#{filmsucheViewController.error}"/>
         </h:form>
     </ui:define>
 </ui:composition>
