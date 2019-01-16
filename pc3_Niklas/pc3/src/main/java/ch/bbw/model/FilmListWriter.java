@@ -49,7 +49,7 @@ public class FilmListWriter {
             XMLOutputter outputter = new XMLOutputter();
             FileOutputStream output;
             Document dokument = new Document(root);
-            output = new FileOutputStream("src/main/resources/xml/FilmList.xml");
+            output = new FileOutputStream("src/main/resources/xml/FilmList_.xml");
             outputter.output(dokument, output);
             output.close();
         } catch (FileNotFoundException ex) {
