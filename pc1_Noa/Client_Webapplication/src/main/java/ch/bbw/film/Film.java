@@ -95,7 +95,7 @@ public class Film implements Serializable {
     }
 
     /**
-     * Auf eine externe URl zugreiffen (hier imdb)
+     * open external url (imdb)
      * @throws IOException
      */
     public void redirect() throws IOException {

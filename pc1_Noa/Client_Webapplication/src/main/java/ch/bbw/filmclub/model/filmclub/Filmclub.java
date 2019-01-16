@@ -31,7 +31,6 @@ import java.util.*;
 @SessionScoped
 public class Filmclub implements Serializable {
     private static Filmclub instance;
-    private boolean isInitialised;
     private ArrayList<Film> films;
 
     public Filmclub() {

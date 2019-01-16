@@ -25,10 +25,11 @@ import java.util.ArrayList;
 @Named
 @SessionScoped
 public class FilmlistViewController implements Serializable {
-    private String error;
+    //@Inject
     private Filmclub filmclub;
 
     public FilmlistViewController() {
+        //films = new ArrayList<>();
         filmclub = Filmclub.getInstance();
     }
 
@@ -57,11 +58,8 @@ public class FilmlistViewController implements Serializable {
         }
     }
 
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
+    @PostConstruct
+    public void init(){
+        //filmclub.initialise();
     }
 }
