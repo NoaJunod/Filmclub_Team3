@@ -1,5 +1,6 @@
 package ch.bbw.filmclub.model.filmclub;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jsoup.Jsoup;
@@ -11,7 +12,7 @@ import org.jsoup.select.Elements;
  *
  * @author 5im16nivanderheide
  */
-public class IMDBReader {
+public class IMDBReader implements Serializable {
 
     private String urlSearch;
     private String urlMovie;
@@ -32,8 +33,7 @@ public class IMDBReader {
     }
     
     /**
-     * checks if IMDB finds a Film for a given input
-     * @return 
+     * checks if IMDB finds a movie for a given inputs
      */
     public boolean movieExists() {
         Elements movies = docSearch.select("a");
@@ -56,7 +56,9 @@ public class IMDBReader {
         }
         return false;
     }
-
+    /**
+     * returns the link of the top search result
+     */
     public String getLinkOfTitle() {
         System.out.println(urlMovie);
         if(movieExists()){
@@ -65,6 +67,9 @@ public class IMDBReader {
         return "https://www.youtube.com/user/PewDiePie";
     }
 
+    /**
+     * returns the director of the top search result
+     */
     public String getDirectorOfTitle() {
         Elements elements = docMovie.select("div");
         for (Element element : elements) {
@@ -79,6 +84,9 @@ public class IMDBReader {
         return null;
     }
 
+    /**
+     * returns the durration of the top search result
+     */
     public int getDurationOfTitle() {
         Elements elements = docMovie.select("time");
         for (Element element : elements) {
@@ -94,6 +102,9 @@ public class IMDBReader {
         return 0;
     }
 
+    /**
+     * returns the year of production of the top search result
+     */
     public int getYearOfTitle() {
         Elements elements = docMovie.select("div");
         for (Element element : elements) {
