@@ -14,7 +14,7 @@ import java.rmi.registry.LocateRegistry;
  *
  * @author 5im16nivanderheide
  */
-public class Main {
+public class StartService {
 
     public static void main(String[] args) {
         try {
